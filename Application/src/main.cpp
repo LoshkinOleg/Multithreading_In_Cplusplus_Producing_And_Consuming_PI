@@ -181,10 +181,10 @@ int main()
 	std::cout << "Using NoMutex functions to generate digits of PI..." << std::endl;
 	for (size_t i = START_OF_PI_RANGE_TO_PRINT; i <= END_OF_PI_RANGE_TO_PRINT; i++)
 	{
-		std::thread producer(NoMutex_Producer, i);
-		std::thread consumer(NoMutex_Consumer);
-		producer.join();
-		consumer.join();
+		// std::thread producer(NoMutex_Producer, i);
+		// std::thread consumer(NoMutex_Consumer);
+		// producer.join();
+		// consumer.join();
 	}
 	std::cout << toPrint;
 	std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -193,10 +193,10 @@ int main()
 	std::cout << "Using MutexOnly functions to generate digits of PI..." << std::endl;
 	for (size_t i = START_OF_PI_RANGE_TO_PRINT; i <= END_OF_PI_RANGE_TO_PRINT; i++)
 	{
-		std::thread producer(MutexOnly_Producer, i);
-		std::thread consumer(MutexOnly_Consumer);
-		producer.join();
-		consumer.join();
+		// std::thread producer(MutexOnly_Producer, i);
+		// std::thread consumer(MutexOnly_Consumer);
+		// producer.join();
+		// consumer.join();
 	}
 	std::cout << toPrint;
 	std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -205,10 +205,10 @@ int main()
 	std::cout << "Using SimpleCV functions to generate digits of PI..." << std::endl;
 	for (size_t i = START_OF_PI_RANGE_TO_PRINT; i <= END_OF_PI_RANGE_TO_PRINT; i++)
 	{
-		std::thread producer(SimpleCV_Producer, i);
-		std::thread consumer(SimpleCV_Consumer);
-		producer.join();
-		consumer.join();
+		// std::thread producer(SimpleCV_Producer, i);
+		// std::thread consumer(SimpleCV_Consumer);
+		// producer.join();
+		// consumer.join();
 	}
 	std::cout << toPrint;
 	std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -217,10 +217,10 @@ int main()
 	std::cout << "Using Lockstep functions to generate digits of PI..." << std::endl;
 	for (size_t i = START_OF_PI_RANGE_TO_PRINT; i <= END_OF_PI_RANGE_TO_PRINT; i++)
 	{
-		std::thread producer(Lockstep_Producer, i);
-		std::thread consumer(Lockstep_Consumer);
-		producer.join();
-		consumer.join();
+		// std::thread producer(Lockstep_Producer, i);
+		// std::thread consumer(Lockstep_Consumer);
+		// producer.join();
+		// consumer.join();
 	}
 	std::cout << toPrint;
 	std::this_thread::sleep_for(std::chrono::milliseconds(10));

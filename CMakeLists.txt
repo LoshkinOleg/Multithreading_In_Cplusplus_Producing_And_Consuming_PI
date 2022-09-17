@@ -5,6 +5,11 @@ project(ApproximatingPi) # Name the visual studio solution.
 set (CMAKE_CXX_STANDARD 20)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Detect linux
+if (UNIX AND NOT APPLE)
+	set(LINUX TRUE)
+endif()
+
 # Ensure build dir exists. We'll be relying on this for finding relative paths in the code and any external tools.
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/build/")
 	message(FATAL_ERROR "Please specify an out-of-source directory 'build/' in the project's root directory. If you don't know what an out-of-source build is, here's a link: https://cmake.org/cmake/help/book/mastering-cmake/chapter/Getting%20Started.html")
@@ -17,9 +22,16 @@ target_include_directories(Application PRIVATE
 	${PROJECT_SOURCE_DIR}/Application/include/ # Detect own headers.
 	${PROJECT_SOURCE_DIR}/thirdparty/easy_profiler/include/ # Open-source and easy to add to a project profiling library. Useful to see if we're actually kicking off new threads or not.
 	)
+if(WIN32)
 target_link_libraries(Application PRIVATE # PRIVATE is used as <keyword> here since Application is an executable, nothing will depend on it.
 	general ${PROJECT_SOURCE_DIR}/thirdparty/easy_profiler/lib/easy_profiler.lib # Linking against the .lib of the easy_profiler dynamic library. This means that the pre-compiled "easy_profiler.dll" will need to be placed besides the Application.exe. Use the moveDlls.bat to do that automatically.
 	)
+endif()
+if(LINUX)
+target_link_libraries(Application PRIVATE # PRIVATE is used as <keyword> here since Application is an executable, nothing will depend on it.
+	general ${PROJECT_SOURCE_DIR}/thirdparty/easy_profiler/bin//linux/libeasy_profiler.so # Linking against the .lib of the easy_profiler dynamic library. This means that the pre-compiled "easy_profiler.dll" will need to be placed besides the Application.exe. Use the moveDlls.bat to do that automatically.
+	)
+endif()
 
 set_target_properties(Application PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/build/Application/bin") # Output compiled binaries to their own folder.
 
@@ -33,4 +45,8 @@ endif()
 set(USE_WORKING_IMPLEMENTATION ON CACHE BOOL "Whether to use the already working implementation of PI approximating functions. Disable to make the program run your own implementations you've written in Application/include/exercice.h .")
 if (USE_WORKING_IMPLEMENTATION)
 	add_compile_definitions(USE_WORKING_IMPLEMENTATION) # Define used in Application/src/main.cpp to tell what implementation to use, the already working one or your own.
+endif()
+
+if(NOT MSVC)
+	message(STATUS "You're not using Microsoft Visual Studio IDE, make sure that when executing the Application and have set USE_EASY_PROFILER to TRUE, the working directory of the executable is set to /build, otherwise easy_profiler won't be able to write to /build/profilerOutputs!")
 endif()

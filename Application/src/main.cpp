@@ -79,6 +79,7 @@ void SingleThreaded_Consumer()
 	std::this_thread::sleep_for(SLEEP_TIME);
 
 	toPrint += buffer;
+	toPrint += '\n';
 }
 
 // Unchecked multithreading. Data race AND not synchronized. Producer and Consumer are running concurrently and are both accessing buffer.

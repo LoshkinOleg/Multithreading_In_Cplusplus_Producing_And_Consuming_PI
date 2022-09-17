@@ -1,6 +1,6 @@
 #pragma once
 
-// Adapted from Fabrice Bellard's implementation of the Bailey–Borwein–Plouffe formula taken from: https://bellard.org/pi/pi1.c .
+// Adapted from Fabrice Bellard's implementation of the Bailey-Borwein-Plouffe formula taken from: https://bellard.org/pi/pi1.c .
 
 /*
  * Computation of the n'th decimal digit of pi with very little memory.

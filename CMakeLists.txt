@@ -37,9 +37,11 @@ set_target_properties(Application PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT
 
 file(MAKE_DIRECTORY ${PROJECT_SOURCE_DIR}/build/profilerOutputs) # Folder for holding easy_profiler's profiling data. file(MAKE_DIRECTORY <dir>) creates a new specified directiory if it doesn't exist yet.
 
+if(WIN32) # Linux version of easy_profiler has issues with multithreaded code.
 set(USE_EASY_PROFILER ON CACHE BOOL "Whether to enable profiling with easy_profiler. Generated .prof files will be located under /profilerOutputs/") # set(<define> <default value> CACHE <variable type> <description>) creates a variable interactible in the CMake GUI.
 if (USE_EASY_PROFILER) # If the use of easy_profiler is desired, add a global preprocessor definition.
 	add_compile_definitions(BUILD_WITH_EASY_PROFILER) # BUILD_WITH_EASY_PROFILER is the define that the library's user must declare when they wish to use easy_profiler.
+endif()
 endif()
 
 set(USE_WORKING_IMPLEMENTATION ON CACHE BOOL "Whether to use the already working implementation of PI approximating functions. Disable to make the program run your own implementations you've written in Application/include/exercice.h .")

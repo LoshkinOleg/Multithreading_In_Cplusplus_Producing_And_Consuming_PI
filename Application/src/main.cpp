@@ -66,6 +66,7 @@ struct PieceOfPi
 
 	std::string ToString() const
 	{
+		// str::string str = "{ digit: " + digit;
 		std::string str = "{ digit: ";
 		str += digit;
 		str += "; producerId: " + std::to_string(producerId);

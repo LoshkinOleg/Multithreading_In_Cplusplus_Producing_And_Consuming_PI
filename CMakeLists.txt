@@ -29,7 +29,7 @@ target_link_libraries(Application PRIVATE # PRIVATE is used as <keyword> here si
 endif()
 if(LINUX)
 target_link_libraries(Application PRIVATE # PRIVATE is used as <keyword> here since Application is an executable, nothing will depend on it.
-	general ${PROJECT_SOURCE_DIR}/thirdparty/easy_profiler/bin//linux/libeasy_profiler.so # Linking against the .lib of the easy_profiler dynamic library. This means that the pre-compiled "easy_profiler.dll" will need to be placed besides the Application.exe. Use the moveDlls.bat to do that automatically.
+	general ${PROJECT_SOURCE_DIR}/thirdparty/easy_profiler/bin/linux/libeasy_profiler.so # Linking against the .lib of the easy_profiler dynamic library. This means that the pre-compiled "easy_profiler.dll" will need to be placed besides the Application.exe. Use the moveDlls.bat to do that automatically.
 	)
 endif()
 

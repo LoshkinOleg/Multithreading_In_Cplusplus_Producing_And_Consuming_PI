@@ -171,7 +171,8 @@ int next_prime(int n)
 
 int GetNthPiDigit(const int pos)
 {
-	if (pos <= 0) throw std::runtime_error(std::string("pos is 0 or negative."));
+	if (pos < 0) throw std::runtime_error(std::string("pos is 0 or negative."));
+	if (pos == 0) return 3;
 
 	int av, a, vmax, N, n = pos, num, den, k, kq1, kq2, kq3, kq4, t, v, s, i, t1;
 	double sum;

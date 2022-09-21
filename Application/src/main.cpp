@@ -1,9 +1,3 @@
-// https://begriffs.com/posts/2020-03-23-concurrent-programming.html
-
-// https://www.youtube.com/watch?v=Dt51GebwNR0
-
-// Useful: https://www.modernescpp.com/index.php/c-core-guidelines-be-aware-of-the-traps-of-condition-variables
-
 #include <vector>
 #include <numeric>
 #include <iostream>

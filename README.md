@@ -1,10 +1,8 @@
 # Multithreading in C++: Producing and Consuming PI
-This repository contains the code used in the blogpost [Multithreading in C++: Producing and Consuming PI](). It demonstrates how to use the multithreading facilities of C++ to synchronize multiple threads of the program using std::mutex, std::condition_variable and std::counting_semaphore.
-
-Note that C++20 is needed to run the semaphore code.
+This repository contains the code used in the blogpost [Multithreading in C++: Producing and Consuming PI](https://loshkinoleg.github.io/blogpost/Producing-And-Consuming-Pi). It demonstrates how to use the multithreading facilities of C++ to synchronize multiple threads of the program using std::mutex and std::condition_variable.
 
 ## Windows users
-I suggest using Visual Studio 2019 or greater to run this project. Use CMake's GUI to generate the visual studio solution.
+I suggest using Visual Studio 2019 or greater to run this project. Use CMake's GUI to generate the visual studio solution. Make an out-of-source CMake build under "/build" for everything to work properly.
 
 ## Linux users
 This project is working on Ubuntu Focal Fossa using VSCode as the IDE with it's CMake Tools extension. Note that MSVC defines the working directory as "/build", you'll need to do the same for your IDE manually, otherwise easy_profiler won't be able to output profiling results to "/build/profilerOutputs" and the assert in main will trigger!

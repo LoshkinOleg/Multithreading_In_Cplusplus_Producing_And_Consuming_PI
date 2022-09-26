@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 #include <thread>
+#include <cassert>
 
 #include <easy/profiler.h> // Used on Windows builds.
 
@@ -85,7 +86,7 @@ int main()
 
 	const auto nrOfBlocksWritten = profiler::dumpBlocksToFile("profilerOutputs/session.prof");
 #ifdef BUILD_WITH_EASY_PROFILER
-	assert(nrOfBlocksWritten && "Easy profiler has failed to write profiling data to disk!"); // TODO: detect file corruption by using nrOfBlocksWritten to see if all blocks have been written.
+	assert(nrOfBlocksWritten && "Easy profiler has failed to write profiling data to disk!");
 #endif //!BUILD_WITH_EASY_PROFILER
 
 	return 0;

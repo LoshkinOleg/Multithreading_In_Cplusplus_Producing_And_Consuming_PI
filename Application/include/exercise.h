@@ -79,9 +79,9 @@ std::mutex m; // A mutex. Used to make critical operations atomic.
 
 void MutexOnly_Producer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Green);
-
     // TODO: lock m.
+
+	EASY_FUNCTION(profiler::colors::Green);
 
     // TODO: set the digit to next digit of PI using GetNthPiDigit(iteration). Set producerId to id.
 
@@ -90,11 +90,11 @@ void MutexOnly_Producer(const size_t id)
 
 void MutexOnly_Consumer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Green100);
-
 	// MessWithCompiler(); // Uncomment this once everything is working and you should see issues with the order of execution.
 
-    // TODO: lock m.
+	// TODO: lock m.
+    
+	EASY_FUNCTION(profiler::colors::Green100);
 
     // TODO: set consumerId to id. Put buffer.ToString into toPrint.
 }
@@ -105,15 +105,15 @@ bool produced = false; // Not technically required but is required practically. 
 
 void CV_Producer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Red);
-
 	MessWithCompiler(); // Everything should be working despite these.
 
     // TODO: lock m and wait for cv_producer with produced as predicate. cv_producer should wake up when produced becomes false.
 
+	EASY_FUNCTION(profiler::colors::Red);
+
 	MessWithCompiler(); // Everything should be working despite these.
 
-    // TODO: set consumerId to id. Put buffer.ToString into toPrint.
+    // TODO: set the digit to next digit of PI using GetNthPiDigit(iteration). Set producerId to id.
 
 	MessWithCompiler(); // Everything should be working despite these.
 	
@@ -128,11 +128,11 @@ void CV_Producer(const size_t id)
 
 void CV_Consumer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Red100);
-
 	MessWithCompiler(); // Everything should be working despite these.
 	
     // TODO: lock m and wait for cv_consumer with produced as predicate. cv_consumer should wake up when produced becomes true.
+
+	EASY_FUNCTION(profiler::colors::Red100);
 
 	MessWithCompiler(); // Everything should be working despite these.
 

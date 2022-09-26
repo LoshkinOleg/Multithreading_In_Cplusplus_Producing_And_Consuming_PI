@@ -86,8 +86,9 @@ std::mutex m; // A mutex. Used to make critical operations atomic.
 
 void MutexOnly_Producer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Green);
 	std::unique_lock<std::mutex> lck(m); // Note: don't explicitly call .lock() and .unlock() on unique_locks: the constructors and destructors do that themselves.
+
+	EASY_FUNCTION(profiler::colors::Green);
 
 	buffer.digit = std::to_string(GetNthPiDigit(iteration))[0];
 	buffer.producerId = id;
@@ -97,11 +98,11 @@ void MutexOnly_Producer(const size_t id)
 
 void MutexOnly_Consumer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Green100);
-
 	MessWithCompiler(); // This forces an order of execution issue.
 
 	std::unique_lock<std::mutex> lck(m);
+
+	EASY_FUNCTION(profiler::colors::Green100);
 
 	buffer.consumerId = id;
 	toPrint += "Consumer has recieved the buffer: " + buffer.ToString() + "\n";
@@ -113,11 +114,11 @@ bool produced = false; // Not technically required but is required practically. 
 
 void CV_Producer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Red);
 	MessWithCompiler(); // Everything still works despite this.
 	std::unique_lock<std::mutex> lck(m);
 	MessWithCompiler(); // Everything still works despite this.
 	cv_producer.wait(lck, []{return !produced;});
+	EASY_FUNCTION(profiler::colors::Red);
 	MessWithCompiler(); // Everything still works despite this.
 
 	buffer.digit = std::to_string(GetNthPiDigit(iteration))[0];
@@ -135,11 +136,11 @@ void CV_Producer(const size_t id)
 
 void CV_Consumer(const size_t id)
 {
-	EASY_FUNCTION(profiler::colors::Red100);
 	MessWithCompiler(); // Everything still works despite this.
 	std::unique_lock<std::mutex> lck(m);
 	MessWithCompiler(); // Everything still works despite this.
 	cv_consumer.wait(lck, []{return produced;});
+	EASY_FUNCTION(profiler::colors::Red100);
 	MessWithCompiler(); // Everything still works despite this.
 
 	buffer.consumerId = id;

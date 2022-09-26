@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.14) # Define minimal CMake version.
-project(ApproximatingPi) # Name the visual studio solution.
+project(ProducingAndConsumingPi) # Name the visual studio solution.
 
 # Set the C++20 as the C++ standard to use (ISO/IEC 14882).
 set (CMAKE_CXX_STANDARD 20)
